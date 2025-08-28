@@ -10,6 +10,7 @@ public class TestInteger implements Comparable<TestInteger>
 
     public int compareTo(TestInteger other)
     {
+        counter++;
         return this.value - other.value;
     }
 

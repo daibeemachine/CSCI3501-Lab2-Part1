@@ -10,6 +10,7 @@ public class TimSort
         {
             System.out.println(value.value);
         }
+        System.out.println(new TestInteger(0).getCounter());
     }
 
     public static TestInteger[] createArray(int size)
