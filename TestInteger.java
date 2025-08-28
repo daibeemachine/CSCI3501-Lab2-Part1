@@ -1,6 +1,6 @@
 public class TestInteger implements Comparable<TestInteger>
 {
-    private int value;
+    public int value;
     private static long counter;
 
     public TestInteger(int value)
