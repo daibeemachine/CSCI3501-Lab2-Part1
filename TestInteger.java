@@ -5,7 +5,7 @@ public class TestInteger implements Comparable<TestInteger>
 
     public TestInteger(int value)
     {
-       this.value = value; 
+       this.value = value;
     }
 
     public int compareTo(TestInteger other)

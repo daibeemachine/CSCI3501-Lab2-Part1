@@ -1,8 +1,8 @@
 import java.util.Arrays;
 
-public class TimSort 
+public class TimSort
 {
-    public static void main(String[] args) 
+    public static void main(String[] args)
     {
         TestInteger[] array = createArray(20);
         Arrays.sort(array);
