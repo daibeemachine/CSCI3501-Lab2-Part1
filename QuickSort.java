@@ -4,11 +4,14 @@ public class QuickSort {
         TestInteger[] array = new TestInteger[20];
         fillArray(array, 20);
         printTestIntegerArray(array);
-        quickSort(array, new TestInteger(0), new TestInteger(array.length-1));
+        quickSort(array);
         printTestIntegerArray(array);
         System.out.println("\nCounter: " + TestInteger.getCounter());
     }
-
+    public static void quickSort(TestInteger[] array)
+    {
+        quickSort(array, new TestInteger(0), new TestInteger(array.length-1));
+    }
     public static void quickSort(TestInteger[] array, TestInteger left, TestInteger right)
     {
         int pivot = (left.value + right.value)/2;
