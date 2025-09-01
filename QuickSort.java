@@ -1,11 +1,12 @@
 public class QuickSort {
-    static TestInteger[] array = createArray(20);
     public static void main(String[] args)
     {
+        TestInteger[] array = new TestInteger[20];
+        fillArray(array, 20);
         printTestIntegerArray(array);
         quickSort(array, new TestInteger(0), new TestInteger(array.length-1));
         printTestIntegerArray(array);
-        System.out.println("\nCounter: " + array[0].getCounter());
+        System.out.println("\nCounter: " + TestInteger.getCounter());
     }
 
     public static void quickSort(TestInteger[] array, TestInteger left, TestInteger right)
@@ -51,14 +52,12 @@ public class QuickSort {
         array[left] = tempInt;
     }
 
-    public static TestInteger[] createArray(int size)
+    public static void fillArray(TestInteger[] array, int size)
     {
-        array = new TestInteger[size];
         for(int i = 0; i < array.length; i++)
         {
             array[i] = new TestInteger((int)((Math.random() * 1000000) + 1));
         }
-        return array;
     }
 
     public static void printTestIntegerArray(TestInteger[] array)

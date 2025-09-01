@@ -8,6 +8,7 @@ public class TestInteger implements Comparable<TestInteger>
        this.value = value;
     }
 
+    @Override
     public int compareTo(TestInteger other)
     {
         counter++;
