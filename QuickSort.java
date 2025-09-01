@@ -17,7 +17,7 @@ public class QuickSort {
         swap(array, partition.value, right.value);
         if((partition.compareTo(left)) > 1)
         {
-            quickSort(array, left, new TestInteger(right.value-1));
+            quickSort(array, left, new TestInteger(partition.value-1));
         }
         if(right.compareTo(partition) > 1)
         {
