@@ -14,12 +14,12 @@ public class TestInteger implements Comparable<TestInteger>
         return this.value - other.value;
     }
 
-    public long getCounter()
+    public static long getCounter()
     {
         return counter;
     }
 
-    public void resetCounter()
+    public static void resetCounter()
     {
         counter = 0;
     }
