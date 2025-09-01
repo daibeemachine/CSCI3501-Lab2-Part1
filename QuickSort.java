@@ -3,57 +3,57 @@ public class QuickSort {
     public static void main(String[] args)
     {
         printTestIntegerArray(array);
-        quickSort(array, 0, array.length-1);
+        quickSort(array, new TestInteger(0), new TestInteger(array.length-1));
         printTestIntegerArray(array);
+        System.out.println("\nCounter: " + array[0].getCounter());
     }
 
-    public static void quickSort(TestInteger[] array, int left, int right)
+    public static void quickSort(TestInteger[] array, TestInteger left, TestInteger right)
     {
-        int pivot = (left + right)/2;
-        array = swap(array, pivot, right);
-        int partition = partition(array, left, right-1, array[right]);
-        array = swap(array, partition, right);
-        if((partition-left) > 1)
+        int pivot = (left.value + right.value)/2;
+        swap(array, pivot, right.value);
+        TestInteger partition = partition(array, new TestInteger(left.value), new TestInteger(right.value-1), array[right.value]);
+        swap(array, partition.value, right.value);
+        if((partition.compareTo(left)) > 1)
         {
-            quickSort(array, left, right-1);
+            quickSort(array, left, new TestInteger(right.value-1));
         }
-        if(right-partition > 1)
+        if(right.compareTo(partition) > 1)
         {
-            quickSort(array, partition+1, right);
+            quickSort(array, new TestInteger(partition.value+1), right);
         }
     }
 
-    public static int partition(TestInteger[] array, int left, int right, TestInteger pivot)
+    public static TestInteger partition(TestInteger[] array, TestInteger left, TestInteger right, TestInteger pivot)
     {
-        while(left <= right)
+        while(left.compareTo(right) <= 0)
         {
-            while(array[left].compareTo(pivot) < 0)
+            while(array[left.value].compareTo(pivot) < 0)
             {
-                left++;
+                left.value++;
             }
-            while(right >= left && array[right].compareTo(pivot) >= 0)
+            while((right.compareTo(left) >= 0) && array[right.value].compareTo(pivot) >= 0)
             {
-                right--;
+                right.value--;
             }
-            if(right > left)
+            if(right.compareTo(left) > 0)
             {
-                swap(array, left, right);
+                swap(array, left.value, right.value);
             }
         }
         return left;
     }
 
-    public static TestInteger[] swap(TestInteger[] array, int left, int right)
+    public static void swap(TestInteger[] array, int left, int right)
     {
         TestInteger tempInt = array[right];
         array[right] = array[left];
         array[left] = tempInt;
-        return array;
     }
 
     public static TestInteger[] createArray(int size)
     {
-        TestInteger[] array = new TestInteger[size];
+        array = new TestInteger[size];
         for(int i = 0; i < array.length; i++)
         {
             array[i] = new TestInteger((int)((Math.random() * 1000000) + 1));
@@ -63,7 +63,7 @@ public class QuickSort {
 
     public static void printTestIntegerArray(TestInteger[] array)
     {
-      System.out.println("\n");
+        System.out.println("\n");
         for(TestInteger value : array)
         {
             System.out.print(value.value + " ");
