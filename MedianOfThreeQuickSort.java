@@ -1,8 +1,9 @@
-public class QuickSort {
+
+public class MedianOfThreeQuickSort {
     public static void main(String[] args)
     {
-        TestInteger[] array = new TestInteger[5];
-        fillArray(array, 5);
+        TestInteger[] array = new TestInteger[2000];
+        fillArray(array, 2000);
         printTestIntegerArray(array);
         quickSort(array);
         printTestIntegerArray(array);
@@ -14,7 +15,22 @@ public class QuickSort {
     }
     public static void quickSort(TestInteger[] array, TestInteger left, TestInteger right)
     {
-        int pivot = (left.value + right.value)/2;
+        int k = right.value - left.value;
+        int pivot = 0;
+        if(k < 1000)
+        {
+            pivot = (left.value + right.value)/2;
+        }
+        else
+        {
+            TestInteger[] medianArray = new TestInteger[3];
+            for(int i = 0; i < 3; i++)
+            {
+                medianArray[i] = new TestInteger((left.value + (int)(Math.random()*(right.value - left.value))));
+            }
+            quickSort(medianArray);
+            pivot = medianArray[1].value;
+        }
         swap(array, pivot, right.value);
         TestInteger partition = partition(array, new TestInteger(left.value), new TestInteger(right.value-1), array[right.value]);
         swap(array, partition.value, right.value);
@@ -22,14 +38,10 @@ public class QuickSort {
         {
             quickSort(array, left, new TestInteger(partition.value-1));
         }
-        else
+        if(right.compareTo(partition) > 1)
         {
-            if(right.compareTo(partition) > 1)
-            {
-                quickSort(array, new TestInteger(partition.value+1), right);
-            }
+            quickSort(array, new TestInteger(partition.value+1), right);
         }
-        
     }
 
     public static TestInteger partition(TestInteger[] array, TestInteger left, TestInteger right, TestInteger pivot)

@@ -4,7 +4,7 @@ public class TimSort
 {
     public static void main(String[] args)
     {
-        TestInteger[] array = createArray(20);
+        TestInteger[] array = createArray(2000);
         Arrays.sort(array);
         for(TestInteger value : array)
         {
