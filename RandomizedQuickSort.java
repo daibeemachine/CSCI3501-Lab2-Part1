@@ -1,8 +1,8 @@
-public class QuickSort {
+public class RandomizedQuickSort {
     public static void main(String[] args)
     {
-        TestInteger[] array = new TestInteger[5];
-        fillArray(array, 5);
+        TestInteger[] array = new TestInteger[20];
+        fillArray(array, 20);
         printTestIntegerArray(array);
         quickSort(array);
         printTestIntegerArray(array);
@@ -14,7 +14,7 @@ public class QuickSort {
     }
     public static void quickSort(TestInteger[] array, TestInteger left, TestInteger right)
     {
-        int pivot = (left.value + right.value)/2;
+        int pivot = (left.value + (int)(Math.random()*(right.value - left.value)));
         swap(array, pivot, right.value);
         TestInteger partition = partition(array, new TestInteger(left.value), new TestInteger(right.value-1), array[right.value]);
         swap(array, partition.value, right.value);
@@ -22,19 +22,15 @@ public class QuickSort {
         {
             quickSort(array, left, new TestInteger(partition.value-1));
         }
-        else
+        if(right.compareTo(partition) > 1)
         {
-            if(right.compareTo(partition) > 1)
-            {
-                quickSort(array, new TestInteger(partition.value+1), right);
-            }
+            quickSort(array, new TestInteger(partition.value+1), right);
         }
-        
     }
 
     public static TestInteger partition(TestInteger[] array, TestInteger left, TestInteger right, TestInteger pivot)
     {
-        while(left.compareTo(right) < 0)
+        while(left.compareTo(right) <= 0)
         {
             while(array[left.value].compareTo(pivot) < 0)
             {
