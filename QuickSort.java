@@ -1,7 +1,7 @@
 public class QuickSort {
     public static void main(String[] args)
     {
-        TestInteger[] array = new TestInteger[5];
+        TestInteger[] array = new TestInteger[20];
         fillArray(array, 5);
         printTestIntegerArray(array);
         quickSort(array);
@@ -12,44 +12,31 @@ public class QuickSort {
     {
         quickSort(array, new TestInteger(0), new TestInteger(array.length-1));
     }
-    public static void quickSort(TestInteger[] array, TestInteger left, TestInteger right)
+    public static void quickSort(TestInteger[] array, TestInteger low, TestInteger high)
     {
-        int pivot = (left.value + right.value)/2;
-        swap(array, pivot, right.value);
-        TestInteger partition = partition(array, new TestInteger(left.value), new TestInteger(right.value-1), array[right.value]);
-        swap(array, partition.value, right.value);
-        if((partition.compareTo(left)) > 1)
+        if((low.compareTo(high) >= 0) || (low.compareTo(new TestInteger(0)) < 0))
         {
-            quickSort(array, left, new TestInteger(partition.value-1));
+            return;
         }
-        else
-        {
-            if(right.compareTo(partition) > 1)
-            {
-                quickSort(array, new TestInteger(partition.value+1), right);
-            }
-        }
-        
+        TestInteger partition = partition(array, low, high);
+        quickSort(array, low, new TestInteger(partition.value-1));
+        quickSort(array, new TestInteger(partition.value+1), high);
+
+
     }
 
-    public static TestInteger partition(TestInteger[] array, TestInteger left, TestInteger right, TestInteger pivot)
+    public static TestInteger partition(TestInteger[] array, TestInteger low, TestInteger high)
     {
-        while(left.compareTo(right) < 0)
-        {
-            while(array[left.value].compareTo(pivot) < 0)
-            {
-                left.value++;
-            }
-            while((right.compareTo(left) >= 0) && array[right.value].compareTo(pivot) >= 0)
-            {
-                right.value--;
-            }
-            if(right.compareTo(left) > 0)
-            {
-                swap(array, left.value, right.value);
+        TestInteger pivot = array[high.value];
+        int i = low.value - 1;
+        for (int j = low.value; j < high.value; j++) {
+            if (array[j].compareTo(pivot) <= 0) {
+                i++;
+                swap(array, i, j);
             }
         }
-        return left;
+        swap(array, i + 1, high.value);
+        return new TestInteger(i + 1);
     }
 
     public static void swap(TestInteger[] array, int left, int right)
