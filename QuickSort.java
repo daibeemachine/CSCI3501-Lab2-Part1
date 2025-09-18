@@ -2,7 +2,7 @@ public class QuickSort {
     public static void main(String[] args)
     {
         TestInteger[] array = new TestInteger[16];
-        fillArray(array, 16);
+        TestIntegerHelper.fillArray(array);
         printTestIntegerArray(array);
         quickSort(array);
         printTestIntegerArray(array);
