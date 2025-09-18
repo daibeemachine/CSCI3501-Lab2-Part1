@@ -7,6 +7,7 @@ public class QuickSort {
         quickSort(array);
         printTestIntegerArray(array);
         System.out.println("\nCounter: " + TestInteger.getCounter());
+        
     }
     public static void quickSort(TestInteger[] array)
     {
@@ -20,9 +21,10 @@ public class QuickSort {
         }
         TestInteger partition = partition(array, low, high);
         quickSort(array, low, new TestInteger(partition.value-1));
+
         quickSort(array, new TestInteger(partition.value+1), high);
 
-
+    }
     }
 
     public static TestInteger partition(TestInteger[] array, TestInteger low, TestInteger high)
