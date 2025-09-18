@@ -1,10 +1,10 @@
 public class TestIntegerHelper
 {
-    public static void fillArray(TestInteger[] array)
+    public static void fillArray(TestInteger[] array, int range)
     {
         for(int i = 0; i < array.length; i++)
         {
-            array[i] = new TestInteger((int)((Math.random() * 1000000) + 1));
+            array[i] = new TestInteger((int)((Math.random() * range) + 1));
         }
     }
 

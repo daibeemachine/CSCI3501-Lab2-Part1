@@ -1,6 +1,6 @@
 public class MedianOfThreeQuickSort {
     private static int ARRAY_SIZE = 2000;
-    private static int k = 1500;
+    private static int k = 16;
     public static void main(String[] args)
     {
         TestInteger[] array = new TestInteger[ARRAY_SIZE];
@@ -31,11 +31,12 @@ public class MedianOfThreeQuickSort {
     {
         int middle = 0;
         int comparisonVal = high.compareTo(low);
-        if(k <= comparisonVal && comparisonVal >= 3)
+        if((k >= comparisonVal+1) && (comparisonVal >= 3))
         {
-            TestInteger one = new TestInteger((low.value + (int)(Math.random()*(high.value - high.value))));
-            TestInteger two = new TestInteger((low.value + (int)(Math.random()*(high.value - high.value))));
-            TestInteger three = new TestInteger((low.value + (int)(Math.random()*(high.value - high.value))));
+
+            int one = low.value + (int)(Math.random()*(high.value - low.value + 1));
+            int two = low.value + (int)(Math.random()*(high.value - low.value + 1));
+            int three = low.value + (int)(Math.random()*(high.value - low.value + 1));
             middle = medianOfThree(one, two, three);
         }
         else
@@ -79,13 +80,26 @@ public class MedianOfThreeQuickSort {
         }
     }
 
-    public static int medianOfThree(TestInteger one, TestInteger two, TestInteger three)
+    public static int medianOfThree(int one, int two, int three)
     {
         TestInteger[] array = new TestInteger[3];
-        array[0] = one;
-        array[1] = two;
-        array[2] = three;
-        quickSort(array);
+        array[0] = new TestInteger(one);
+        array[1] = new TestInteger(two);
+        array[2] = new TestInteger(three);
+
+        if(array[0].compareTo(array[1]) > 0)
+        {
+            swap(array, 0, 1);
+        }
+        if(array[1].compareTo(array[2]) > 0)
+        {
+            swap(array, 1, 2);
+        }
+        if(array[0].compareTo(array[2]) > 0)
+        {
+            swap(array, 0, 2);
+        }
+
         return array[1].value;
     }
 }
