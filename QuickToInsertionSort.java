@@ -1,7 +1,8 @@
-public class MedianOfThreeQuickSort {
-    private static int ARRAY_SIZE = 2000;
-    private static int k = 1500;
-    public static void main(String[] args)
+public class QuickToInsertionSort {
+
+  private static int k = 1;
+  private static int ARRAY_SIZE = 16;
+  public static void main(String[] args)
     {
         TestInteger[] array = new TestInteger[ARRAY_SIZE];
         fillArray(array, ARRAY_SIZE);
@@ -16,32 +17,22 @@ public class MedianOfThreeQuickSort {
     }
     public static void quickSort(TestInteger[] array, TestInteger low, TestInteger high)
     {
-        if((low.compareTo(high) >= 0) || (low.compareTo(new TestInteger(0)) < 0))
+        if((low.compareTo(high) >= (-k + 1)) || (low.compareTo(new TestInteger(0)) < 0))
         {
+            insertionSort(array, low, high);
             return;
         }
-        TestInteger partition = partition(array, low, high);
-        quickSort(array, low, new TestInteger(partition.value-1));
-        quickSort(array, new TestInteger(partition.value+1), high);
-
-
+        else
+        {
+            TestInteger partition = partition(array, low, high);
+            quickSort(array, low, new TestInteger(partition.value-1));
+            quickSort(array, new TestInteger(partition.value+1), high);
+        }
     }
 
     public static TestInteger partition(TestInteger[] array, TestInteger low, TestInteger high)
     {
-        int middle = 0;
-        int comparisonVal = high.compareTo(low);
-        if(k <= comparisonVal && comparisonVal >= 3)
-        {
-            TestInteger one = new TestInteger((low.value + (int)(Math.random()*(high.value - high.value))));
-            TestInteger two = new TestInteger((low.value + (int)(Math.random()*(high.value - high.value))));
-            TestInteger three = new TestInteger((low.value + (int)(Math.random()*(high.value - high.value))));
-            middle = medianOfThree(one, two, three);
-        }
-        else
-        {
-            middle = low.value + (high.value - low.value)/2;
-        }
+        int middle = low.value + (high.value - low.value)/2;
         swap(array, middle, high.value);
         TestInteger pivot = array[high.value];
         int i = low.value - 1;
@@ -79,13 +70,21 @@ public class MedianOfThreeQuickSort {
         }
     }
 
-    public static int medianOfThree(TestInteger one, TestInteger two, TestInteger three)
+    public static void insertionSort(TestInteger[] array, TestInteger low, TestInteger high)
     {
-        TestInteger[] array = new TestInteger[3];
-        array[0] = one;
-        array[1] = two;
-        array[2] = three;
-        quickSort(array);
-        return array[1].value;
+        if(array.length >= 2)
+        {
+            for(int i = low.value+1; i <= high.value; i++)
+            {
+                TestInteger key = array[i];
+                TestInteger j = new TestInteger(i - 1);
+                while ((j.compareTo(low) >= 0) && ((array[j.value]).compareTo(key) > 0))
+                {
+                    array[j.value + 1] = array[j.value];
+                    j = new TestInteger(j.value-1);
+                }
+                array[j.value+1] = key;
+            }
+        }
     }
 }

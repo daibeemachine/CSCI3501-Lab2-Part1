@@ -150,5 +150,3 @@ public class SortingExperiment {
         System.out.println("Number of comparisons: " + comparisonsTimSort);
         System.out.println();
 */
-
-        for(int i = 0; i < array.length; i++) {

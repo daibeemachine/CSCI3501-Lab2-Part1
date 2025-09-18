@@ -1,8 +1,8 @@
 public class QuickSort {
     public static void main(String[] args)
     {
-        TestInteger[] array = new TestInteger[20];
-        fillArray(array, 5);
+        TestInteger[] array = new TestInteger[16];
+        fillArray(array, 16);
         printTestIntegerArray(array);
         quickSort(array);
         printTestIntegerArray(array);
@@ -27,6 +27,8 @@ public class QuickSort {
 
     public static TestInteger partition(TestInteger[] array, TestInteger low, TestInteger high)
     {
+        int middle = low.value + (high.value - low.value)/2;
+        swap(array, middle, high.value);
         TestInteger pivot = array[high.value];
         int i = low.value - 1;
         for (int j = low.value; j < high.value; j++) {
