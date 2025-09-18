@@ -4,6 +4,9 @@ public class SortingExperiment2
     {
       final int SIZE = 10000;
       final int RANGE = 1000000;
+
+      System.out.println("----------Random Sequence----------");
+
       TestInteger[] originalArray = new TestInteger[SIZE];
       TestIntegerHelper.fillArray(originalArray, RANGE);
       TestInteger[] quickSortArray = originalArray;
@@ -14,6 +17,51 @@ public class SortingExperiment2
       printRandomizedQuickSort(randomizedQuickSortArray);
       printMedianOfThreeQuickSort(medianQuickSortArray);
       printQuickToInsertionSort(InsertionQuickSortArray);
+
+      System.out.println("----------END----------");
+
+      System.out.println("----------Linear Array----------");
+
+      TestIntegerHelper.fillArrayLinearly(originalArray);
+      quickSortArray = originalArray;
+      randomizedQuickSortArray = originalArray;
+      medianQuickSortArray = originalArray;
+      InsertionQuickSortArray = originalArray;
+      printQuickSort(quickSortArray);
+      printRandomizedQuickSort(randomizedQuickSortArray);
+      printMedianOfThreeQuickSort(medianQuickSortArray);
+      printQuickToInsertionSort(InsertionQuickSortArray);
+
+      System.out.println("----------END----------");
+
+      System.out.println("----------Backwards Array----------");
+
+      TestIntegerHelper.fillArrayReverseLinearly(originalArray);
+      quickSortArray = originalArray;
+      randomizedQuickSortArray = originalArray;
+      medianQuickSortArray = originalArray;
+      InsertionQuickSortArray = originalArray;
+      printQuickSort(quickSortArray);
+      printRandomizedQuickSort(randomizedQuickSortArray);
+      printMedianOfThreeQuickSort(medianQuickSortArray);
+      printQuickToInsertionSort(InsertionQuickSortArray);
+
+      System.out.println("----------END----------");
+
+      System.out.println("----------Sorted Sequences (10 sequences of 1000 elements)----------");
+
+      TestIntegerHelper.fillArraySortedSequence(originalArray, 10, 1000, RANGE);
+      quickSortArray = originalArray;
+      randomizedQuickSortArray = originalArray;
+      medianQuickSortArray = originalArray;
+      InsertionQuickSortArray = originalArray;
+      printQuickSort(quickSortArray);
+      printRandomizedQuickSort(randomizedQuickSortArray);
+      printMedianOfThreeQuickSort(medianQuickSortArray);
+      printQuickToInsertionSort(InsertionQuickSortArray);
+
+      System.out.println("----------END----------");
+
 
     }
 

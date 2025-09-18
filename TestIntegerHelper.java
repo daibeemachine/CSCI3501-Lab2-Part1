@@ -10,9 +10,9 @@ public class TestIntegerHelper
 
     public static void fillArrayLinearly(TestInteger[] array)
     {
-        for(int i = 0; i < array.length; i++)
+        for(int i = 1; i <= array.length; i++)
         {
-            array[i] = new TestInteger(i);
+            array[i-1] = new TestInteger(i);
         }
     }
 
@@ -20,7 +20,7 @@ public class TestIntegerHelper
     {
         for(int i = array.length-1; i >= 0; i--)
         {
-            array[array.length-i] = new TestInteger(i);
+            array[array.length-i-1] = new TestInteger(i);
         }
     }
 
@@ -30,6 +30,18 @@ public class TestIntegerHelper
         for(TestInteger value : array)
         {
             System.out.print(value.value + " ");
+        }
+    }
+
+    public static void fillArraySortedSequence(TestInteger[] array, int numSequences, int numElements, int numRange)
+    {
+        for(int i = 0; i < numSequences; i++)
+        {
+            int randomInteger = (int)(Math.random() * (numRange - numElements)) + 1;
+            for(int j = 0; j < numElements; j++)
+            {
+                array[(i*numElements) + j] = new TestInteger((randomInteger - numElements) + j + 1);
+            }
         }
     }
 }
